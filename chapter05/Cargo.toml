@@ -1,0 +1,32 @@
+[package]
+name = "zero2prod"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/main.rs"
+name = "zero2prod"
+
+[dependencies]
+actix-web = "4"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1", features = ["derive"]}
+serde-aux = "4"
+config = "0.13.3"
+chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
+sqlx = { version = "0.5.5", default-features = false, features = ["runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate", "offline"] }
+uuid = { version = "0.8.1", features = ["v4"] }
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
+tracing-bunyan-formatter = "0.3"
+tracing-log = "0.1.3"
+secrecy = { version = "0.8", features = ["serde"] }
+tracing-actix-web = "0.7"
+
+[dev-dependencies]
+reqwest = "0.11"
+once_cell = "1"
