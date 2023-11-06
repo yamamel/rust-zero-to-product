@@ -2,6 +2,7 @@ application:
   host: "127.0.0.1"
   port: 8000
   hmac_secret: "long-and-very-secret-random-key-needed-to-verify-message-integrity"
+  redis_uri: "redis://127.0.0.1:6379"
 database:
   host: "127.0.0.1"
   port: 5432
