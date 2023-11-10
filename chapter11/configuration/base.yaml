@@ -1,0 +1,16 @@
+application:
+  host: "127.0.0.1"
+  port: 8000
+  hmac_secret: "long-and-very-secret-random-key-needed-to-verify-message-integrity"
+  redis_uri: "redis://127.0.0.1:6379"
+database:
+  host: "127.0.0.1"
+  port: 5432
+  username: "postgres"
+  password: "password"
+  database_name: "newsletter"
+email_client:
+  base_url: "http://localhost"
+  sender_email: "test@gmail.com"
+  authorization_token: "my-secret-token"
+  timeout_milliseconds: 10000
