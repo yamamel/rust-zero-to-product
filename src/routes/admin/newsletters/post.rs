@@ -151,7 +151,7 @@ async fn insert_newsletter_issue(
         text_content,
         html_content,
     )
-    .execute(transaction)
+    .execute(transaction.as_mut())
     .await?;
     Ok(newsletter_issue_id)
 }
@@ -173,7 +173,7 @@ async fn enqueue_delivery_tasks(
         "#,
         newsletter_issue_id
     )
-    .execute(transaction)
+    .execute(transaction.as_mut())
     .await?;
     Ok(())
 }

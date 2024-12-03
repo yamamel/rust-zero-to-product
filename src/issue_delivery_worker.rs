@@ -128,7 +128,7 @@ async fn delete_task(
         issue_id,
         email,
     )
-    .execute(&mut transcation)
+    .execute(&mut *transcation)
     .await?;
 
     transcation.commit().await?;

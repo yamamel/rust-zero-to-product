@@ -1,5 +1,5 @@
 use actix_web::{body::to_bytes, HttpResponse};
-use sqlx::{postgres::PgHasArrayType, PgPool, Postgres, Transaction};
+use sqlx::{PgPool, Postgres, Transaction};
 use uuid::Uuid;
 
 use super::IdempotencyKey;
@@ -9,12 +9,6 @@ use super::IdempotencyKey;
 struct HeaderPairRecord {
     name: String,
     value: Vec<u8>,
-}
-
-impl PgHasArrayType for HeaderPairRecord {
-    fn array_type_info() -> sqlx::postgres::PgTypeInfo {
-        sqlx::postgres::PgTypeInfo::with_name("_header_pair")
-    }
 }
 
 pub enum NextAction {
@@ -41,7 +35,7 @@ pub async fn try_processing(
         user_id,
         idempotency_key.as_ref()
     )
-    .execute(&mut transcation)
+    .execute(&mut *transcation)
     .await?
     .rows_affected();
 
@@ -91,7 +85,7 @@ pub async fn save_response(
         headers,
         body.as_ref(),
     )
-    .execute(&mut transaction)
+    .execute(&mut *transaction)
     .await?;
     transaction.commit().await?;
 
