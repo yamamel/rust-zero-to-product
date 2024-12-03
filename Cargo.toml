@@ -18,16 +18,14 @@ serde = { version = "1", features = ["derive"] }
 serde-aux = "4"
 config = "0.13.3"
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
-sqlx = { version = "0.5.5", default-features = false, features = [
-    "runtime-actix-rustls",
+sqlx = { version = "0.8", default-features = false, features = [
+    "runtime-tokio",
     "macros",
     "postgres",
     "uuid",
     "chrono",
-    "migrate",
-    "offline",
+    "migrate"
 ] }
-uuid = { version = "0.8.1", features = ["v4", "serde"] }
 tracing = { version = "0.1", features = ["log"] }
 tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
 tracing-bunyan-formatter = "0.3"
@@ -64,3 +62,13 @@ wiremock = "0.5"
 linkify = "0.9"
 serde_urlencoded = "0.7.1"
 webpki = "0.22.2"
+
+[dependencies.uuid]
+version = "1.10.0"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+    "serde",
+]
+

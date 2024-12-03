@@ -110,7 +110,7 @@ pub async fn insert_subscriber(
         new_subscriber.name.as_ref(),
         Utc::now()
     )
-    .execute(transaction)
+    .execute(transaction.as_mut())
     .await?;
     Ok(subscriber_id)
 }
@@ -132,7 +132,7 @@ pub async fn store_token(
         subscriber_id,
         subscription_token,
     )
-    .execute(transaction)
+    .execute(transaction.as_mut())
     .await?;
     Ok(())
 }

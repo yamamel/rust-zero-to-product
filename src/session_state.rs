@@ -2,7 +2,7 @@ use std::future::{ready, Ready};
 
 use actix_session::{Session, SessionExt, SessionGetError, SessionInsertError};
 use actix_web::{dev::Payload, FromRequest, HttpRequest};
-use uuid::Uuid;
+use sqlx::types::Uuid;
 
 pub struct TypedSession(Session);
 
